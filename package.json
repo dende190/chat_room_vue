@@ -1,0 +1,26 @@
+{
+  "name": "chat_room_vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dende190/chat_room_vue.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dende190/chat_room_vue/issues"
+  },
+  "homepage": "https://github.com/dende190/chat_room_vue#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "socket.io": "^4.2.0"
+  }
+}
