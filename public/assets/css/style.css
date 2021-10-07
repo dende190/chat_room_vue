@@ -1,0 +1,121 @@
+.header {
+  text-align: center;
+}
+
+.header_title {
+  font-size: 50px;
+  margin-bottom: 0;
+}
+
+.rooms_title {
+  margin-bottom: 0;
+}
+
+.rooms_name {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.rooms_name:hover {
+  color: #6c6cf3;
+}
+
+.sign_in_content {
+  display: inline-grid;
+}
+
+.sign_in_input {
+  border-radius: 7px;
+  height: 33px;
+  width: 300px;
+  padding: 8px;
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.sign_in_button {
+  border-radius: 13px;
+  border: 1px solid black;
+  height: 30px;
+  background-color: #505050;
+  color: white;
+}
+
+.app_container {
+  margin: 50px 300px 0;
+}
+
+.chat_container {
+  overflow: auto;
+  height: 500px;
+}
+
+.box {
+  margin: 5px 0;
+}
+
+.message_right {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.chat-message {
+  height: 60px;
+  width: 350px;
+  background-color: rgb(193 193 255);
+  border-radius: 11px;
+  padding: 11px 20px;
+}
+
+.chat-message.me{
+  background-color: rgb(155 236 169);
+}
+
+.message_send_content {
+  display: flex;
+}
+
+.message_send_input {
+  border-radius: 7px;
+  height: 33px;
+  width: 85%;
+  padding: 8px;
+  font-size: 19px;
+  margin-bottom: 10px;
+  margin: 0 10px 0 0;
+}
+
+.message_send_button {
+  border-radius: 13px;
+  border: 1px solid black;
+  width: 12%;
+  background-color: #505050;
+  color: white;
+}
+
+.information {
+  font-size: 25px;
+}
+
+.nick_name {
+  float: right;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.date {
+  font-size: 13px;
+  float: right;
+}
+
+.message {
+  margin: 21px 0 10px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .app_container {
+      margin: 50px 33px 0;
+  }
+}

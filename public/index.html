@@ -4,60 +4,111 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Chat de Juanpis</title>
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
 </head>
 <body>
-  <section id="app" class="hero is-fullheight">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title">Chat de Juanpis </h1>
-        <template v-if="step === 'nick'">
-          <div class="columns">
-            <div class="column is-6">
-              <div class="field has-addons">
-                <div class="control is-expanded">
-                  <input v-model="nick" class="input is-medium" type="text"
-                    placeholder="Ingrese su nick">
-                  <input v-model="room" type="text" placeholder="Ingrese su nick">
-                </div>
-                <div class="control">
-                  <a @click="signIn" class="button is-info is-medium">
-                    Ingresar
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </template>
-        <template v-else>
-          <div v-if="messages.length" class="chat-container">
-            <div v-for="item in messages" :class="{ 'has-text-right': nick === item.nick }">
-              <div class="box chat-message" :class="{ 'me': nick === item.nick }">
-                <span class="has-text-weight-bold">{{ item.nick }}</span> - {{ item.message }}
-                <span
-                  class="is-italic has-text-grey-light is-size-7">{{ new Date(item.date).toLocaleDateString() }}</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="field has-addons">
-            <div class="control is-expanded">
-              <input v-model="message" class="input is-medium" type="text"
-                placeholder="Ingrese el mensaje">
-            </div>
-            <div class="control">
-              <a @click="send" class="button is-info is-medium">
-                Enviar
+  <div class="header">
+    <h1 class="header_title">Chat de Juan Pablo Arnedo</h1>
+    <h1>Espero les guste !!</h1 >
+  </div>
+  <section id="app" class="app_container">
+    <p ref="roomCurrent" hidden="true" class="information">
+      <span v-if="step === 'chat'">
+        Conectado como:
+        <strong>{{ nick }}</strong>
+      </span>
+      <br>
+      Sala actual: <strong>{{ room }}</strong>
+    </p>
+    <template v-if="step === 'nick'">
+      <div ref="roomsContainer">
+        <h3 class="rooms_title">
+          Salas:
+        </h3>
+        <p v-if="rooms.length">
+          Ingresa a una sala o creala para comenzar a chatear!
+        </p>
+        <p v-else>
+          No existen salas actualmente se el primero en crear una!
+        </p>
+        <div v-if="rooms.length && room === null" class="container_rooms">
+          <ul>
+            <li v-for="room in rooms">
+              <a @click="selectRoom(room)" class="rooms_name">
+                {{ room }}
               </a>
-            </div>
+            </li>
+          </ul>
+        </div>
+        <div class="sign_in_content" ref="containerSelectRoom">
+          <input
+            v-model="room"
+            type="text"
+            placeholder="Nombre de la sala"
+            ref="roomName"
+            class="sign_in_input"
+          />
+          <button @click="createRoom" ref="createRoom" class="sign_in_button">
+            Crear sala
+          </button>
+        </div>
+      </div>
+      <div class="sign_in" ref="signIn" hidden="true">
+        <h3>Ingresa tu nombre de usuario</h3>
+        <div class="sign_in_content">
+          <input
+            v-model="nick"
+            type="text"
+            placeholder="Ingresa tu nombre de usuario"
+            class="sign_in_input"
+          />
+          <button @click="signIn" class="sign_in_button">
+            Ingresar!
+          </button>
+        </div>
+      </div>
+    </template>
+    <template v-else>
+      <div v-if="messages.length" class="chat_container" ref="chatPrueba">
+        <div
+          v-for="item in messages"
+          class="box"
+          :class="{ 'message_right': nick === item.nick }"
+        >
+          <div
+            class="chat-message"
+            :class="{ 'me': nick === item.nick }"
+          >
+            <span class="nick_name">
+              <span v-if="nick !== item.nick">
+                Usuario: {{ item.nick }}
+              </span>
+              <span v-else>
+                Yo
+              </span>
+            </span>
+            <p class="message">{{ item.message }}</p>
+            <span class="date">
+              Fecha: {{ new Date(item.date).toLocaleDateString() }}
+            </span>
           </div>
-        </template>
+        </div>
       </div>
-    </div>
-    <footer v-if="step === 'chat'" class="hero-foot">
-      <div class="container section has-text-centered">
-        <p>Conectado como <b>{{ nick }}</b></p>
+      <div class="message_send_content">
+        <input
+          v-model="message"
+          class="message_send_input"
+          type="text"
+          placeholder="Ingrese el mensaje"
+        />
+        <button
+          @click="send"
+          class="message_send_button"
+        >
+          Enviar
+        </button>
       </div>
-    </footer>
+    </template>
   </section>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
