@@ -5,6 +5,9 @@ y reenombrar el archivo llamado .env.example solo por .env (por temas de la
 prueba tiene los datos de la base de datos para que realicen las pruebas) luego
 usar el comando `npm start`.
 
+para entrar al chat desde cualquier navegador (menos IE8) entrar a
+`http://localhost:8081/`
+
 La base de datos se usa desde Mongo Atlas, esta vacia para que se realicen las
 pruebas desde 0.
 
